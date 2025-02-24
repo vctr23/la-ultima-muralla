@@ -17,8 +17,11 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1150
-window/size/viewport_height=740
+window/size/viewport_height=735
+
+[global_group]
+
+Enemy=""
 
 [rendering]
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl58v25k460mg"]
+
+[ext_resource type="Script" path="res://stages/Towers/arrow.gd" id="1_2knn6"]
+[ext_resource type="Texture2D" uid="uid://wpkmsld7cb0a" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/3 Units/Arrow/1.png" id="1_myrsy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_swukv"]
+radius = 2.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_834xg"]
+radius = 3.0
+height = 18.0
+
+[node name="Arrow" type="CharacterBody2D"]
+script = ExtResource("1_2knn6")
+
+[node name="1" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_myrsy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["Enemy"]]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_swukv")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_834xg")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

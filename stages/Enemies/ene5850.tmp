@@ -1,7 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://d08ko8q41hr75"]
+[gd_scene load_steps=17 format=3 uid="uid://d08ko8q41hr75"]
 
-[ext_resource type="Script" path="res://Enemies/enemy_1.gd" id="1_lgcr2"]
+[ext_resource type="Script" path="res://stages/Enemies/enemy_1.gd" id="1_lgcr2"]
 [ext_resource type="Texture2D" uid="uid://calv0u66obnev" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/1/D_Walk.png" id="1_xod54"]
+[ext_resource type="Texture2D" uid="uid://dwyxo2lkg38hy" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/1/D_Death.png" id="2_bb73c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl56y"]
+atlas = ExtResource("2_bb73c")
+region = Rect2(0, 3, 57, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5t81"]
+atlas = ExtResource("2_bb73c")
+region = Rect2(57, 3, 57, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qpck"]
+atlas = ExtResource("2_bb73c")
+region = Rect2(114, 3, 57, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ywb"]
+atlas = ExtResource("2_bb73c")
+region = Rect2(171, 3, 57, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac7t6"]
+atlas = ExtResource("2_bb73c")
+region = Rect2(228, 3, 57, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpqwi"]
 atlas = ExtResource("1_xod54")
@@ -31,6 +52,26 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tl56y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5t81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qpck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ywb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac7t6")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tpqwi")
 }, {
 "duration": 1.0,
@@ -54,17 +95,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cp8ih"]
-radius = 13.0
+radius = 14.0
 
-[node name="Enemy1" type="CharacterBody2D"]
+[node name="Enemy1" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_lgcr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ugd4o")
-animation = &"walk"
+animation = &"death"
+offset = Vector2(4, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_cp8ih")
