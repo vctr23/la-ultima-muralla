@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgco2aqohm2ra"]
+
+[ext_resource type="Script" path="res://stages/Towers/tower_1_panel.gd" id="1_gxd24"]
+[ext_resource type="Texture2D" uid="uid://sbxgh8sa00st" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/1 Upgrade/4.png" id="2_x8o7t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cgat"]
+atlas = ExtResource("2_x8o7t")
+region = Rect2(210, 33, 70, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4d41h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cgat")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Tower1Panel" type="Panel"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 60.0
+offset_bottom = 60.0
+script = ExtResource("1_gxd24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, 38)
+scale = Vector2(0.85, 0.85)
+sprite_frames = SubResource("SpriteFrames_4d41h")
+frame_progress = 0.0655514
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

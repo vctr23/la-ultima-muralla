@@ -8,6 +8,7 @@ var is_dying = false  # Para evitar que la animación se reproduzca más de una 
 func _ready():
 	anim.animation_finished.connect(_on_animation_finished)  # Conectar la señal
 
+	
 func _process(delta):
 	# Si se muere, hago que no se mueva
 	if is_dying:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://di5gawvqtg3r1"]
+[gd_scene load_steps=26 format=3 uid="uid://di5gawvqtg3r1"]
 
 [ext_resource type="Script" path="res://stages/Towers/tower_1.gd" id="1_4yfya"]
 [ext_resource type="Texture2D" uid="uid://b2jrg7vljxtmb" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/1 Upgrade/1.png" id="2_yejik"]
@@ -147,6 +147,13 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_52voh"]
 radius = 100.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy6fb"]
+bg_color = Color(0.206103, 0.366493, 0.0215354, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+
 [node name="Tower1" type="StaticBody2D"]
 script = ExtResource("1_4yfya")
 
@@ -165,6 +172,14 @@ shape = SubResource("CircleShape2D_7vjws")
 shape = SubResource("CircleShape2D_52voh")
 
 [node name="ArrowContainer" type="Node" parent="." groups=["Enemy"]]
+
+[node name="Area" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 0.313726)
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy6fb")
 
 [connection signal="body_entered" from="TowerArea" to="." method="_on_tower_area_body_entered"]
 [connection signal="body_exited" from="TowerArea" to="." method="_on_tower_area_body_exited"]
