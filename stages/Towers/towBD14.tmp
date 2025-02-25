@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://di5gawvqtg3r1"]
+[gd_scene load_steps=41 format=3 uid="uid://di5gawvqtg3r1"]
 
 [ext_resource type="Script" path="res://stages/Towers/tower_1.gd" id="1_4yfya"]
 [ext_resource type="Texture2D" uid="uid://b2jrg7vljxtmb" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/1 Upgrade/1.png" id="2_yejik"]
@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://nocrnj7frtru" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/1 Upgrade/3.png" id="4_qltj7"]
 [ext_resource type="Texture2D" uid="uid://sbxgh8sa00st" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/1 Upgrade/4.png" id="5_2b727"]
 [ext_resource type="Texture2D" uid="uid://c1xl2oxyab0pq" path="res://assets/free-archer-towers-pixel-art-for-tower-defense/3 Units/1/S_Idle.png" id="6_36f77"]
-[ext_resource type="Texture2D" uid="uid://b1e08gogu7sd" path="res://assets/Upgrade_icons/towerDefense_tile110.png" id="7_vbe6g"]
-[ext_resource type="Texture2D" uid="uid://c47thi7cv4xlf" path="res://assets/Upgrade_icons/towerDefense_tile297.png" id="8_v0tur"]
-[ext_resource type="Texture2D" uid="uid://buvssbp2yoo2w" path="res://assets/Upgrade_icons/towerDefense_tile296.png" id="9_y5r3c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0bhl5"]
 atlas = ExtResource("2_yejik")
@@ -185,7 +182,7 @@ animations = [{
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_52voh"]
-radius = 20.0
+radius = 100.0
 
 [sub_resource type="GDScript" id="GDScript_5jh4p"]
 script/source = "extends CollisionShape2D
@@ -199,7 +196,7 @@ func _ready() -> void:
 func _draw() -> void:
 	var center = Vector2(0,0)
 	var radius = get_parent().get_parent().range
-	var color = Color(0,0,0,0.3)
+	var color = Color(1,0,0, 0.3)
 	draw_circle(center, radius, color)
 "
 
@@ -306,14 +303,6 @@ shape = SubResource("CircleShape2D_7vjws")
 shape = SubResource("CircleShape2D_52voh")
 script = SubResource("GDScript_5jh4p")
 
-[node name="TowerDetector" type="Area2D" parent="."]
-process_mode = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerDetector"]
-light_mask = 3
-visibility_layer = 3
-shape = SubResource("CircleShape2D_52voh")
-
 [node name="ArrowContainer" type="Node" parent="." groups=["Enemy"]]
 
 [node name="Area" type="Panel" parent="."]
@@ -360,11 +349,6 @@ offset_bottom = 108.0
 text = "1000"
 horizontal_alignment = 1
 
-[node name="TowerDefenseTile110" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Range"]
-position = Vector2(40, 40)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("7_vbe6g")
-
 [node name="Power" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
@@ -382,10 +366,6 @@ offset_bottom = 108.0
 text = "1000"
 horizontal_alignment = 1
 
-[node name="TowerDefenseTile297" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power"]
-position = Vector2(40, 41)
-texture = ExtResource("8_v0tur")
-
 [node name="Attack speed" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
@@ -402,10 +382,6 @@ offset_right = 79.0
 offset_bottom = 109.0
 text = "1000"
 horizontal_alignment = 1
-
-[node name="TowerDefenseTile296" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Attack speed"]
-position = Vector2(41, 39)
-texture = ExtResource("9_y5r3c")
 
 [node name="ProgressBar" type="ProgressBar" parent="Upgrade"]
 offset_left = -28.0
@@ -425,7 +401,6 @@ wait_time = 3.0
 [connection signal="body_entered" from="TowerArea" to="." method="_on_tower_area_body_entered"]
 [connection signal="body_exited" from="TowerArea" to="." method="_on_tower_area_body_exited"]
 [connection signal="mouse_entered" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_mouse_entered"]
-[connection signal="mouse_exited" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_mouse_exited"]
 [connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_pressed"]
 [connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/Power" to="." method="_on_power_pressed"]
 [connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/Attack speed" to="." method="_on_attack_speed_pressed"]

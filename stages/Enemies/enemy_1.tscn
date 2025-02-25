@@ -1,8 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://d08ko8q41hr75"]
+[gd_scene load_steps=20 format=3 uid="uid://d08ko8q41hr75"]
 
 [ext_resource type="Script" path="res://stages/Enemies/enemy_1.gd" id="1_lgcr2"]
 [ext_resource type="Texture2D" uid="uid://calv0u66obnev" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/1/D_Walk.png" id="1_xod54"]
 [ext_resource type="Texture2D" uid="uid://dwyxo2lkg38hy" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/1/D_Death.png" id="2_bb73c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibten"]
+bg_color = Color(0.874975, 0.230718, 0.195876, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7m5x"]
+bg_color = Color(0.300813, 0.692838, 0.435998, 1)
+border_color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[sub_resource type="GDScript" id="GDScript_qir8m"]
+script/source = "extends ProgressBar
+
+
+func _ready() -> void:
+	self.max_value = get_parent().health
+	
+func _process(delta: float) -> void:
+	self.value = get_parent().health
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tl56y"]
 atlas = ExtResource("2_bb73c")
@@ -99,6 +117,17 @@ radius = 14.0
 
 [node name="Enemy1" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_lgcr2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -19.0
+offset_right = 24.0
+offset_bottom = -11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ibten")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m7m5x")
+value = 50.0
+show_percentage = false
+script = SubResource("GDScript_qir8m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
 texture_filter = 1

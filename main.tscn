@@ -8,6 +8,9 @@
 
 [node name="TileMapLayers" parent="." instance=ExtResource("1_xo03g")]
 
+[node name="TileMap" parent="TileMapLayers" index="0"]
+layer_1/name = "Layer1"
+
 [node name="PathSpawner" type="Node2D" parent="."]
 script = ExtResource("2_vp6ld")
 
@@ -20,3 +23,5 @@ autostart = true
 [node name="UI" parent="." instance=ExtResource("3_kwxi3")]
 
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
+
+[editable path="TileMapLayers"]

@@ -30,4 +30,13 @@ scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_4d41h")
 frame_progress = 0.0655514
 
+[node name="Label" type="Label" parent="AnimatedSprite2D"]
+offset_left = -48.2353
+offset_top = -50.5882
+offset_right = -25.2353
+offset_bottom = -22.5882
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://b461mdi3qfoo6"]
+
+[ext_resource type="PackedScene" uid="uid://c0xgl3doegotc" path="res://Tiles/tile_map.tscn" id="1_d6d6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm2dl"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.862745)
+
+[sub_resource type="GDScript" id="GDScript_sw00a"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_vn8yu"]
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	get_tree().quit()
+"
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="TileMapLayers" parent="." instance=ExtResource("1_d6d6t")]
+
+[node name="TileMap" parent="TileMapLayers" index="0"]
+layer_1/name = "Layer1"
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 735.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nm2dl")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 100.0
+offset_right = 1152.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 80
+text = "La Ultima Muralla"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jugar" type="Button" parent="."]
+custom_minimum_size = Vector2(220, 130)
+offset_left = 235.0
+offset_top = 408.0
+offset_right = 455.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 50
+text = "Jugar"
+script = SubResource("GDScript_sw00a")
+
+[node name="Salir" type="Button" parent="."]
+custom_minimum_size = Vector2(220, 130)
+offset_left = 694.0
+offset_top = 408.0
+offset_right = 914.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 50
+text = "Salir
+"
+script = SubResource("GDScript_vn8yu")
+
+[connection signal="pressed" from="Jugar" to="Jugar" method="_on_pressed"]
+[connection signal="pressed" from="Salir" to="Jugar" method="_on_salir_pressed"]
+[connection signal="pressed" from="Salir" to="Salir" method="_on_pressed"]
+
+[editable path="TileMapLayers"]

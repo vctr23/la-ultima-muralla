@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://i7y3br3s3sva"]
+[gd_scene load_steps=4 format=3 uid="uid://i7y3br3s3sva"]
 
 [ext_resource type="PackedScene" uid="uid://bgco2aqohm2ra" path="res://stages/Towers/tower_1_panel.tscn" id="1_jyhe4"]
+
+[sub_resource type="GDScript" id="GDScript_jnbuh"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	self.text = \"Vida: \" + str(Game.health)
+"
+
+[sub_resource type="GDScript" id="GDScript_b1i1s"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	self.text = \"Dinero: \" + str(Game.money)
+"
 
 [node name="UI" type="CanvasLayer"]
 
@@ -16,3 +30,25 @@ offset_bottom = 80.0
 
 [node name="Tower1Panel" parent="Panel/FlowContainer" instance=ExtResource("1_jyhe4")]
 layout_mode = 2
+
+[node name="Health" type="Label" parent="."]
+offset_left = 345.0
+offset_top = -1.0
+offset_right = 477.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.717647, 0.156863, 0.141176, 1)
+theme_override_font_sizes/font_size = 40
+text = "Vida: "
+horizontal_alignment = 1
+script = SubResource("GDScript_jnbuh")
+
+[node name="Money" type="Label" parent="."]
+offset_left = 928.0
+offset_top = -1.0
+offset_right = 1118.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.0980392, 0.654902, 0.788235, 1)
+theme_override_font_sizes/font_size = 40
+text = "Dinero: "
+horizontal_alignment = 1
+script = SubResource("GDScript_b1i1s")
