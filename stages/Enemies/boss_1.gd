@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
-@export var speed = 100
-var health = 10
+@export var speed = 80
+var health = 120
 var is_dying = false  
 
 func _ready():
@@ -19,7 +19,7 @@ func _process(delta):
 	get_parent().set_progress(get_parent().get_progress() + speed * delta)
 
 	if get_parent().get_progress_ratio() == 1:
-		Game.health -= 1
+		Game.health -= 5
 		queue_free()
 
 	if health <= 0 and not is_dying:

@@ -133,7 +133,7 @@ script = SubResource("GDScript_qir8m")
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ugd4o")
-animation = &"death"
+animation = &"walk"
 offset = Vector2(4, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

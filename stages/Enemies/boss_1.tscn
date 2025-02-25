@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://4v7ivwl0bntc"]
+
+[ext_resource type="Script" path="res://stages/Enemies/boss_1.gd" id="1_r7u0p"]
+[ext_resource type="Texture2D" uid="uid://biap77548piwg" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/2/S_Death.png" id="2_a04o8"]
+[ext_resource type="Texture2D" uid="uid://db8adndrupy50" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/2/S_Walk.png" id="4_3fkwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa7bm"]
+bg_color = Color(0.874975, 0.230718, 0.195876, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q3qp"]
+bg_color = Color(0.300813, 0.692838, 0.435998, 1)
+border_color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[sub_resource type="GDScript" id="GDScript_7o728"]
+script/source = "extends ProgressBar
+
+
+func _ready() -> void:
+	self.max_value = get_parent().health
+	
+func _process(delta: float) -> void:
+	self.value = get_parent().health
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rardf"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jui5b"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmjou"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofwkd"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jokp5"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pwq"]
+atlas = ExtResource("2_a04o8")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxc7m"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsvi0"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us63l"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_div3c"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53xx0"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju82r"]
+atlas = ExtResource("4_3fkwj")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkeb0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rardf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jui5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmjou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofwkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jokp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pwq")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxc7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsvi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us63l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_div3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53xx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju82r")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlm2k"]
+radius = 20.0
+
+[node name="Boss1" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_r7u0p")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -19.0
+offset_right = 24.0
+offset_bottom = -11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_aa7bm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1q3qp")
+value = 50.0
+show_percentage = false
+script = SubResource("GDScript_7o728")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 0.349066
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_jkeb0")
+animation = &"death"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_hlm2k")
