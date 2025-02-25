@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://4v7ivwl0bntc"]
+[gd_scene load_steps=20 format=3 uid="uid://4v7ivwl0bntc"]
 
 [ext_resource type="Script" path="res://stages/Enemies/boss_1.gd" id="1_r7u0p"]
 [ext_resource type="Texture2D" uid="uid://biap77548piwg" path="res://assets/free-field-enemies-pixel-art-for-tower-defense/2/S_Death.png" id="2_a04o8"]
@@ -10,17 +10,6 @@ bg_color = Color(0.874975, 0.230718, 0.195876, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q3qp"]
 bg_color = Color(0.300813, 0.692838, 0.435998, 1)
 border_color = Color(0.716296, 0.716296, 0.716296, 1)
-
-[sub_resource type="GDScript" id="GDScript_7o728"]
-script/source = "extends ProgressBar
-
-
-func _ready() -> void:
-	self.max_value = get_parent().health
-	
-func _process(delta: float) -> void:
-	self.value = get_parent().health
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rardf"]
 atlas = ExtResource("2_a04o8")
@@ -134,10 +123,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_aa7bm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1q3qp")
 value = 50.0
 show_percentage = false
-script = SubResource("GDScript_7o728")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 0.349066
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_jkeb0")
 animation = &"death"

@@ -31,7 +31,7 @@ func _process(delta):
 func die():
 	is_dying = true  # Evita que la animación se reproduzca múltiples veces
 	anim.play("death")
-	Game.money += 1
+	Game.money += 10
 	# Desactivo colisión mientras realiza animación de muerte
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
